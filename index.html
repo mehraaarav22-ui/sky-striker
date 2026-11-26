@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sky Striker | Flight Battle</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/">✦ SKY STRIKER</a>
+      <span class="top-tag">FLIGHT BATTLE // ARCADE</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">✧ PILOT YOUR SHIP · SURVIVE THE GALAXY ✧</div>
+        <h1>THE SKY IS<br><span>YOUR BATTLEFIELD.</span></h1>
+        <p class="intro">Fly through the unknown, dodge the debris and take on three increasingly difficult stages.</p>
+      </section>
+
+      <section class="game-layout">
+        <div class="game-panel">
+          <div class="game-topline">
+            <span>SECTOR 07 <i class="live-dot"></i></span>
+            <span id="statusText">SYSTEM READY</span>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="gameCanvas" width="800" height="520" aria-label="Sky Striker game area"></canvas>
+            <div class="overlay" id="startOverlay">
+              <div class="overlay-symbol">✦</div>
+              <h2>READY, PILOT?</h2>
+              <p>Enter your callsign and launch your mission.</p>
+              <input id="playerName" maxlength="20" placeholder="Your name / callsign" value="Pilot">
+              <button id="startButton" class="primary-btn">START MISSION <span>→</span></button>
+              <small>Move: WASD / Arrow keys &nbsp; · &nbsp; Fire: SPACE</small>
+            </div>
+            <div class="overlay hidden" id="gameOverOverlay">
+              <div class="overlay-symbol">✧</div>
+              <h2 id="endTitle">MISSION OVER</h2>
+              <p id="endMessage">Your flight has ended.</p>
+              <div class="final-score">SCORE <strong id="finalScore">0</strong></div>
+              <button id="restartButton" class="primary-btn">FLY AGAIN <span>↻</span></button>
+            </div>
+          </div>
+          <div class="game-footer">
+            <span><b>WASD</b> / <b>ARROWS</b> MOVE</span>
+            <span><b>SPACE</b> FIRE</span>
+            <span>AVOID RED HAZARDS</span>
+          </div>
+          <div class="mobile-controls">
+            <div class="mobile-help">
+              <b>MOBILE CONTROLS</b>
+              <span>Drag your finger on the game to steer. Hold FIRE to shoot, or enable gyro and tilt your phone.</span>
+            </div>
+            <div class="mobile-buttons">
+              <button type="button" id="gyroButton" class="control-btn">◎ ENABLE GYRO</button>
+              <button type="button" id="fireButton" class="control-btn fire-btn">✦ HOLD TO FIRE</button>
+            </div>
+            <div id="gyroStatus" class="gyro-status" aria-live="polite">Touch steering is ready · Gyroscope is off</div>
+          </div>
+        </div>
+
+        <aside class="side-panel">
+          <div class="stat-card">
+            <div class="section-label">MISSION STATUS</div>
+            <div class="stat-row"><span>STAGE</span><strong id="stageValue">01 / 03</strong></div>
+            <div class="stat-row"><span>SCORE</span><strong id="scoreValue">00000</strong></div>
+            <div class="stat-row"><span>HULL INTEGRITY</span><strong id="livesValue">♥ ♥ ♥</strong></div>
+            <div class="progress-track"><div id="progressBar"></div></div>
+            <p class="hint" id="stageHint">Stage 1: Learn the flight path.</p>
+          </div>
+
+          <div class="stat-card stages-card">
+            <div class="section-label">FLIGHT PLAN</div>
+            <div class="stage-item active" id="stageCard1"><span>01</span><div><b>BEGINNER</b><small>First contact</small></div><i>●</i></div>
+            <div class="stage-item" id="stageCard2"><span>02</span><div><b>ADVANCED</b><small>Asteroid field</small></div><i>●</i></div>
+            <div class="stage-item" id="stageCard3"><span>03</span><div><b>EXPERT</b><small>Final encounter</small></div><i>●</i></div>
+          </div>
+
+          <div class="stat-card leaderboard-card">
+            <div class="leader-heading"><div class="section-label">TOP PILOTS</div><button id="refreshBoard" title="Refresh leaderboard">↻</button></div>
+            <ol id="leaderboard"><li class="empty-board">No scores yet. Be first!</li></ol>
+          </div>
+        </aside>
+      </section>
+
+      <section class="how-to">
+        <div><span class="how-icon">↗</span><div><b>KEEP MOVING</b><p>Your ship stays in flight. Steer around incoming hazards.</p></div></div>
+        <div><span class="how-icon">◎</span><div><b>TAKE AIM</b><p>Press space to fire at enemy ships and earn points.</p></div></div>
+        <div><span class="how-icon">⚡</span><div><b>LEVEL UP</b><p>Reach each score target to unlock the next stage.</p></div></div>
+      </section>
+    </main>
+    <footer>SKY STRIKER <span>·</span> CLASS XII COMPUTER SCIENCE PROJECT <span>·</span> PYTHON + SQL</footer>
+  </div>
+  <script src="{{ url_for('static', filename='game.js') }}"></script>
+</body>
+</html>
